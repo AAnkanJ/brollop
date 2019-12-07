@@ -65,6 +65,9 @@ def topic_posts(request, pk, topic_pk):
     topic.save()
     return render(request, 'topic_posts.html', {'topic': topic})
 
+def shop(request):
+    #shop = get_object_or_404(Shop, pk=pk)
+    return render(request, 'shop.html', {})
 
 @login_required
 def reply_topic(request, pk, topic_pk):

@@ -38,3 +38,25 @@ class Post(models.Model):
         return truncated_message.chars(30)
     def get_message_as_markdown(self):
         return mark_safe(markdown(self.message, safe_mode='escape'))
+
+# wedding shop starts here
+
+class WishList(models.Model):
+    name = models.CharField(max_length=30, unique=True)
+    description = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Gift(models.Model):
+    name = models.CharField(max_length=30, unique=True)
+    message = models.TextField(max_length=4000)
+    wishList = models.ForeignKey(WishList, related_name='gift', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(null=True)
+    created_by = models.ForeignKey(User, related_name='gift', on_delete=models.SET_NULL, null=True)
+    updated_by = models.ForeignKey(User, null=True, related_name='+', on_delete=models.SET_NULL)
+    def __str__(self):
+        return self.name
+    def get_message_as_markdown(self):
+        return mark_safe(markdown(self.message, safe_mode='escape'))

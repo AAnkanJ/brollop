@@ -37,7 +37,7 @@ SECRET_KEY = '#4e4pt_mfw!g9ctfjgmma_6c$@a-99ekj%3xw@k5wg@nb4f+1j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.thornberg.pm']
 
 
 # Application definition

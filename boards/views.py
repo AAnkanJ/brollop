@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import NewTopicForm, PostForm
-from .models import Board, Post, Topic
+from .models import Board, Post, Topic, WishList, Gift
 from django.views.generic import UpdateView, ListView
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -66,8 +66,8 @@ def topic_posts(request, pk, topic_pk):
     return render(request, 'topic_posts.html', {'topic': topic})
 
 def shop(request):
-    #shop = get_object_or_404(Shop, pk=pk)
-    return render(request, 'shop.html', {})
+    wishlist = get_object_or_404(WishList, name='Bröllop', pk=1)
+    return render(request, 'shop.html', {'wishlist': wishlist})
 
 @login_required
 def reply_topic(request, pk, topic_pk):

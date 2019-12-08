@@ -1,49 +1,30 @@
-{% extends 'base.html' %}
-
 {% block breadcrumb %}
-  <li class="breadcrumb-item active">Välkommen till vår bröllopsshop</li>
+  <li class="breadcrumb-item active">Välkommen till vår bröllopsshop {{ wishlist.name }} {{ wishlist.description }}</li>
 {% endblock %}
 
 {% block content %}
   <table class="table">
     <thead class="thead-inverse">
       <tr>
-        <th>Board</th>
-        <th>Posts</th>
-        <th>Topics</th>
-        <th>Last Post</th>
+        <th>Önskningar</th>
       </tr>
     </thead>
-    <!-- <tbody>
-      {% for board in boards %}
-        <tr>
-          <td>
-            <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
-            <small class="text-muted d-block">{{ board.description }}</small>
-          </td>
-          <td class="align-middle">
-            {{ board.get_posts_count }}
-          </td>
-          <td class="align-middle">
-            {{ board.topics.count }}
-          </td>
-          <td class="align-middle">
-            {% with post=board.get_last_post %}
-              {% if post %}
-                <small>
-                  <a href="{% url 'topic_posts' board.pk post.topic.pk %}">
-                    By {{ post.created_by.username }} at {{ post.created_at }}
-                  </a>
-                </small>
-              {% else %}
-                <small class="text-muted">
-                  <em>No posts yet.</em>
-                </small>
-              {% endif %}
-            {% endwith %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody> -->
   </table>
+{% for gift in wishlist.gift.all %}
+<div class="card-body p-3">
+            <div class="row">
+                <div class="col-10">
+                  <div class="row mb-3">
+                      <div class="col-6">
+                        <strong class="text-muted">{{ gift.name }}</strong>
+                      </div>
+                      <div class="col-6 text-right">
+                        <small class="text-muted">{{ gift.message }}</small>
+                      </div>
+                  </div>
+                  {{ gift.message }}
+                </div>
+            </div>
+</div>
+{% endfor %}
 {% endblock %}

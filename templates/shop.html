@@ -1,12 +1,14 @@
+{% extends 'base.html' %}
+
 {% block breadcrumb %}
-  <li class="breadcrumb-item active">Välkommen till vår bröllopsshop {{ wishlist.name }} {{ wishlist.description }}</li>
+  <li class="breadcrumb-item active">Välkommen till {{ wishlist.description }}</li>
 {% endblock %}
 
 {% block content %}
   <table class="table">
     <thead class="thead-inverse">
       <tr>
-        <th>Önskningar</th>
+        <th>Önskningar {{ wishlist.name }}</th>
       </tr>
     </thead>
   </table>

@@ -14,7 +14,9 @@
       </tr>
     </thead>
   </table>
+  <div class="row">
   {% for gift in wishlist.gift.all %}
+  <div class ="col-md-3">
     <div class="card mb-2 border-dark" style="width:15rem">
         <div class="card-header text-white bg-dark py-2 px-3">{{ gift.name }}</div>
         <img class="card-img-top" src="{% static 'img/anka.jpg' %}" alt="Card image cap">
@@ -26,5 +28,10 @@
             </div>
         </div>
     </div>
+  </div>
+  {% if forloop.counter|divisibleby:3 %}
+      </div><div class="row">
+    {% endif %}
   {% endfor %}
+  </div>
 {% endblock %}

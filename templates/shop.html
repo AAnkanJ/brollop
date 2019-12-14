@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block breadcrumb %}
   <li class="breadcrumb-item active">Välkommen till {{ wishlist.description }}</li>
 {% endblock %}
@@ -12,21 +14,26 @@
       </tr>
     </thead>
   </table>
-{% for gift in wishlist.gift.all %}
-<div class="card-body p-3">
+  {% for gift in wishlist.gift.all %}
+    <div class="card mb-2 border-dark">
+        {% if forloop.first %}
+            <div class="card-header text-white bg-dark py-2 px-3">{{ gift.name }}</div>
+        {% endif %}
+        <div class="card-body p-3">
             <div class="row">
+                <div class="col-2">
+                  <img src="{% static 'img/anka.jpg' %}" alt="{{ gift.name }}" class="w-100">
+                </div>
                 <div class="col-10">
                   <div class="row mb-3">
                       <div class="col-6">
                         <strong class="text-muted">{{ gift.name }}</strong>
                       </div>
-                      <div class="col-6 text-right">
-                        <small class="text-muted">{{ gift.message }}</small>
-                      </div>
                   </div>
                   {{ gift.message }}
                 </div>
             </div>
-</div>
-{% endfor %}
+        </div>
+    </div>
+  {% endfor %}
 {% endblock %}

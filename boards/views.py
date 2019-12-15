@@ -2,7 +2,7 @@ from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import NewTopicForm, PostForm
+from .forms import NewTopicForm, PostForm, BuyGiftForm
 from .models import Board, Post, Topic, WishList, Gift
 from django.views.generic import UpdateView, ListView
 from django.utils import timezone
@@ -72,7 +72,20 @@ def shop(request):
 def buy_gift(request, gift_pk):
     wishlist = get_object_or_404(WishList, name='Bröllop', pk=1)
     gift = get_object_or_404(Gift, wishList__name='Bröllop', pk=gift_pk)
-    return render(request, 'buy_gift.html', {'wishlist': wishlist, 'gift': gift})
+    if request.method == 'POST':
+        form = BuyGiftForm(request.POST)
+        if form.is_valid():
+            # post = form.save(commit=False)
+            # post.topic = topic
+            # post.created_by = request.user
+            # post.save()
+            # topic.last_updated = timezone.now()
+            # topic.save()
+            return redirect('topic_posts', pk=pk, topic_pk=topic_pk)
+    else:
+        form = PostForm()
+
+    return render(request, 'buy_gift.html', {'wishlist': wishlist, 'gift': gift, 'form': form})
 
 @login_required
 def reply_topic(request, pk, topic_pk):

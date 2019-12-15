@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Hem</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'shop' %}">{{ wishlist.name }}</a></li>
+  <li class="breadcrumb-item active">Tack för {{ gift.name }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="col-10">
+      Stort tack för att du köpt {{ gift.name }}!
+  </div>
+{% endblock %}

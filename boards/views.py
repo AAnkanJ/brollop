@@ -97,11 +97,17 @@ def buy_gift(request, gift_pk):
             if gift.costLeft == 0:
                 gift.bought = True
             gift.save()
-            return redirect('shop')
+            return redirect('thankyou', gift_pk = gift.pk)
     else:
         form = BuyGiftForm()
 
     return render(request, 'buy_gift.html', {'wishlist': wishlist, 'gift': gift, 'form': form})
+
+def thankyou(request, gift_pk):
+    wishlist = get_object_or_404(WishList, name='Bröllop', pk=1)
+    gift = get_object_or_404(Gift, wishList__name='Bröllop', pk=gift_pk)
+    
+    return render(request, 'thankyou.html', {'wishlist': wishlist, 'gift': gift})
 
 @login_required
 def reply_topic(request, pk, topic_pk):

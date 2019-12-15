@@ -26,18 +26,30 @@
                   {{ gift.message }}
               </div>
               {%if not gift.bought %}
+                {%if gift.cost == 0%}
+                <div class="col-10 text-muted">
+                Klicka köp för att markera att du köper denhär presenten.
+                </div>
+                {%else%}
               <div class="col-10 text-muted">
                   Kostnad kvar att bidra med: {{ gift.costLeft }}kr
               </div>
               {%endif %}
+              {%endif %}
               {%if gift.bought %}
-              <div class="col-10 text-muted">
-                  Köpt för {{ gift.cost }}kr, stort tack!
-              </div>
+                {%if gift.cost == 0%}
+                  <div class="col-10 text-muted">
+                      Markerad som köpt, stort tack!
+                  </div>                
+                  {%else%}  
+                  <div class="col-10 text-muted">
+                      Köpt för {{ gift.cost }}kr, stort tack!
+                  </div>
+                {%endif %}
               {%endif %}
             </div>
             {%if not gift.bought %}
-          <a href="{% url 'buy_gift' gift.pk %}" class="btn btn-primary">Köp</a>
+              <a href="{% url 'buy_gift' gift.pk %}" class="btn btn-primary">Köp</a>
           {% endif %}
         </div>
     </div>

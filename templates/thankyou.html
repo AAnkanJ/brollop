@@ -9,7 +9,27 @@
 {% endblock %}
 
 {% block content %}
+{% if gift.cost == 0 %}
   <div class="col-10">
-      Stort tack för att du köpt {{ gift.name }}!
+      Stort tack för att du planerar att köpa eller redan köpt {{ gift.name }}!
   </div>
+{%else%}
+  <div class="col-10">
+      Stort tack för att du bestämt dig för att köpa {{ gift.name }}!
+  </div>
+  <div class="col-10">
+      Allt du behöver göra nu är att swisha {{ gift.latestPayed }}kr till ....
+  </div>
+{%endif%}
+  <div class="col-10">
+      Om du skulle ångra dig kan du kontakta Annika så tar hon bort din markering.
+  </div>
+  <div class="col-10">
+      Vi ser fram emot att ses på bröllopet!
+  </div>
+  <div class="col-10">
+      Kram Annika och Emil
+  </div>
+
+
 {% endblock %}

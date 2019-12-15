@@ -77,6 +77,7 @@ def buy_gift(request, gift_pk):
         if form.is_valid():
             inp = form.save(commit=False)
             gift.costPayed += inp.costPayed
+            gift.latestPayed = inp.costPayed
             if gift.boughtBy_1 == '':
                 gift.boughtBy_1 = inp.boughtBy_1
             else:

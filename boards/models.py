@@ -56,6 +56,7 @@ class Gift(models.Model):
     cost = models.PositiveIntegerField(default = 0)
     costLeft = models.PositiveIntegerField(default = 99999)
     costPayed = models.PositiveIntegerField(default = 0)
+    latestPayed = models.PositiveIntegerField(default = 0)
     bought = models.BooleanField()
     boughtBy_1 = models.TextField(max_length=4000, default='', blank=True)
     boughtBy_2 = models.TextField(max_length=4000, default='', blank=True)

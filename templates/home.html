@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 
+
+
 {% block breadcrumb %}
   <li class="breadcrumb-item active">Boards</li>
 {% endblock %}
 
 {% block content %}
+  <div class="mb-4">
+    <a href="{% url 'shop' %}" class="btn btn-primary" role="button">Önskelista</a>
+  </div>
   <table class="table">
     <thead class="thead-inverse">
       <tr>

@@ -69,6 +69,11 @@ def shop(request):
     wishlist = get_object_or_404(WishList, name='Bröllop', pk=1)
     return render(request, 'shop.html', {'wishlist': wishlist})
 
+def buy_gift(request, gift_pk):
+    wishlist = get_object_or_404(WishList, name='Bröllop', pk=1)
+    gift = get_object_or_404(Gift, wishList__name='Bröllop', pk=gift_pk)
+    return render(request, 'buy_gift.html', {'wishlist': wishlist, 'gift': gift})
+
 @login_required
 def reply_topic(request, pk, topic_pk):
     topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)

@@ -20,14 +20,17 @@ class PostForm(forms.ModelForm):
         fields = ['message','topic' ]
 
 class BuyGiftForm(forms.ModelForm):
-    message = forms.CharField(
+    boughtBy_1 = forms.CharField(
         widget=forms.Textarea(
-            attrs={'rows': 5, 'placeholder': 'Skriv ett meddelande till brudparet'}
+            attrs={'rows': 5, 'placeholder': 'Skriv gärna ett meddelande till brudparet'}
         ),
         max_length=4000,
-        help_text='The max length of the text is 4000.'
+        help_text='The max length of the text is 4000.',
+        label = ''
     )
-
+    costPayed = forms.IntegerField(
+        label = 'Välj hur mycket du vill betala'
+    )
     class Meta:
         model = Gift
-        fields = ['costPayed', 'message']
+        fields = ['costPayed', 'boughtBy_1']

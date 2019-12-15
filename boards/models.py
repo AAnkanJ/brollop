@@ -53,14 +53,15 @@ class Gift(models.Model):
     message = models.TextField(max_length=4000)
     wishList = models.ForeignKey(WishList, related_name='gift', on_delete=models.CASCADE)
     picture = models.CharField(max_length=30, default='img/anka.jpg')
-    cost = models.PositiveIntegerField(default=0)
-    costPayed = models.PositiveIntegerField(default=0)
-    bought = models.BooleanField(default=0)
-    boughtBy_1 = models.TextField(max_length=4000, default='')
-    boughtBy_2 = models.TextField(max_length=4000, default='')
-    boughtBy_3 = models.TextField(max_length=4000, default='')
-    boughtBy_4 = models.TextField(max_length=4000, default='')
-    boughtBy_5 = models.TextField(max_length=4000, default='')
+    cost = models.PositiveIntegerField(default = 0)
+    costLeft = models.PositiveIntegerField(default = 99999)
+    costPayed = models.PositiveIntegerField(default = 0)
+    bought = models.BooleanField()
+    boughtBy_1 = models.TextField(max_length=4000, default='', blank=True)
+    boughtBy_2 = models.TextField(max_length=4000, default='', blank=True)
+    boughtBy_3 = models.TextField(max_length=4000, default='', blank=True)
+    boughtBy_4 = models.TextField(max_length=4000, default='', blank=True)
+    boughtBy_5 = models.TextField(max_length=4000, default='', blank=True)
     def __str__(self):
         return self.name
     def get_message_as_markdown(self):

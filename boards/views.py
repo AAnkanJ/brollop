@@ -75,12 +75,28 @@ def buy_gift(request, gift_pk):
     if request.method == 'POST':
         form = BuyGiftForm(request.POST)
         if form.is_valid():
-            # post = form.save(commit=False)
-            # post.topic = topic
-            # post.created_by = request.user
-            # post.save()
-            # topic.last_updated = timezone.now()
-            # topic.save()
+            inp = form.save(commit=False)
+            gift.costPayed += inp.costPayed
+            if gift.boughtBy_1 == '':
+                gift.boughtBy_1 = inp.boughtBy_1
+            else:
+                if gift.boughtBy_2 == '':
+                    gift.boughtBy_2 = inp.boughtBy_1
+                else:
+                    if gift.boughtBy_3 == '':
+                        gift.boughtBy_3 = inp.boughtBy_1
+                    else:
+                        if gift.boughtBy_4 == '':
+                            gift.boughtBy_4 = inp.boughtBy_1
+                        else:
+                            if gift.boughtBy_4 == '':
+                                gift.boughtBy_4 = inp.boughtBy_1
+                            else:
+                                gift.boughtBy_5 = inp.boughtBy_1
+            gift.costLeft = gift.cost - gift.costPayed
+            if gift.costLeft == 0:
+                gift.bought = True
+            gift.save()
             return redirect('shop')
     else:
         form = BuyGiftForm()

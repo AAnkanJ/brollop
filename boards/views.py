@@ -81,9 +81,9 @@ def buy_gift(request, gift_pk):
             # post.save()
             # topic.last_updated = timezone.now()
             # topic.save()
-            return redirect('topic_posts', pk=pk, topic_pk=topic_pk)
+            return redirect('shop')
     else:
-        form = PostForm()
+        form = BuyGiftForm()
 
     return render(request, 'buy_gift.html', {'wishlist': wishlist, 'gift': gift, 'form': form})
 

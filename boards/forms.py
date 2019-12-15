@@ -17,12 +17,12 @@ class NewTopicForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['message', ]
+        fields = ['message','topic' ]
 
 class BuyGiftForm(forms.ModelForm):
     message = forms.CharField(
         widget=forms.Textarea(
-            attrs={'rows': 5, 'placeholder': 'What is on your mind?'}
+            attrs={'rows': 5, 'placeholder': 'Skriv ett meddelande till brudparet'}
         ),
         max_length=4000,
         help_text='The max length of the text is 4000.'
@@ -30,4 +30,4 @@ class BuyGiftForm(forms.ModelForm):
 
     class Meta:
         model = Gift
-        fields = ['name', 'message']
+        fields = ['costPayed', 'message']

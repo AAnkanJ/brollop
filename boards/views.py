@@ -8,6 +8,11 @@ from django.views.generic import UpdateView, ListView
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 
+from django.contrib.auth.decorators import user_passes_test
+
+def guest_check(user):
+    return (user.username == 'guest')
+
 @method_decorator(login_required, name='dispatch')
 class PostUpdateView(UpdateView):
     model = Post
@@ -70,6 +75,7 @@ def shop(request):
     return render(request, 'shop.html', {'wishlist': wishlist})
 
 @login_required
+@user_passes_test(guest_check)
 def buy_gift(request, gift_pk):
     wishlist = get_object_or_404(WishList, name='Bröllop', pk=1)
     gift = get_object_or_404(Gift, wishList__name='Bröllop', pk=gift_pk)

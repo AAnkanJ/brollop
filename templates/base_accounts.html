@@ -9,8 +9,11 @@
 {% block body %}
   <div class="container">
     <h1 class="text-center logo my-4">
-      <a href="{% url 'home' %}">Django Boards</a>
+      <a href="{% url 'home' %}">Annikas och Emils bröllopssida</a>
     </h1>
+
+    {% block title %}
+    {% endblock %}
     {% block content %}
     {% endblock %}
   </div>

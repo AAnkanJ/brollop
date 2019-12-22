@@ -7,6 +7,15 @@
 {% endblock %}
 
 {% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10">
+          <p>Om du vill ge oss en bröllopspresent kan här se vad vi önskar oss. En del saker är fysiska, de kan du här markera för andra att du köpt (så att vi bara får en av varje). En del saker är upplevelser för vår bröllopsresa, när du köper dem får du instruktion på hur du skickar motsvarande summa. Vi ser fram emot att berätta för dig om upplevelsen du gav oss. För alla upplevelser står en kostnad men det går även bra att betala delar av den, så får någon annan gäst också vara med och bidra. Hur mycket du vill bidra med fyller du i när du klickat på köp. Om du köper en fysisk sak kan du skriva 0 i det fältet. </p>
+        </div>
+    </div>  
+</div>
+
   <table class="table">
     <thead class="thead-inverse">
       <tr>
@@ -28,7 +37,7 @@
               {%if not gift.bought %}
                 {%if gift.cost == 0%}
                 <div class="col-10 text-muted">
-                Klicka köp för att markera att du köper denhär presenten.
+                Klicka för att markera att du köper denhär presenten.
                 </div>
                 {%else%}
               <div class="col-10 text-muted">

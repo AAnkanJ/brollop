@@ -21,7 +21,7 @@
                             Annika Johansson
                             </p><p>
 
-Vigseln inleds lördagen den 20 juni 2020 kl. 14:00 i <a href="https://g.page/norgeshusgbg?share" class="text-decoration-none" target="_blank" >Norska sjömanskyrkan i Göteborg</a>. 
+Vigseln inleds lördagen den 20 juni 2020 kl. 14:30 i <a href="https://g.page/norgeshusgbg?share" class="text-decoration-none" target="_blank" >Norska sjömanskyrkan i Göteborg</a>. 
 </p><p>
 Därefter serveras
 mingel i trädgården och middag i den angränsande 
@@ -29,11 +29,11 @@ festlokalen.
 Efter middagen bjuds det på dans och
 dryck. 
 </p><p>
-Vår toastmaster Malin Johansson tar gärna emot anmälningar för tal, sånger, lekar och spex under middagen. Maila henne på ... . Vi uppskattar verkligen om ni vill bidra till stämmningen under kvällen. 
+Vår toastmaster Malin Johansson tar gärna emot anmälningar för tal, sånger, lekar och spex under middagen. Du hittar hennes kontaktuppgifter nedan. Vi uppskattar verkligen om ni vill bidra till stämmningen under kvällen. 
 </p><p>
 Barn är välkomna på vigseln men under kvällen vill vi bara vara vuxna, ammade barn är givetvis välkomna hela dagen.
 </p><p>
-O.S.A. senast den 30 april genom att anmäla er nedan eller meddela oss att ni inte kan komma.
+O.S.A. senast den 30 april genom att anmäla er nedan. Om ni inte kan komma får ni gärna använda våra kontaktuppgifter nedan för att meddela oss det.
 </p><p>
 Om du önskar ge oss en present finner du vår önskelista nedan, vi hoppas att den är till hjälp.
 </p><p>
@@ -42,8 +42,10 @@ Det finns få parkeringsplatser vid kyrkan så lämna gärna bilen hemma. Närma
 Det finns möjlighet att hyra sängar i Norges hus vandrarhem som ligger i källaren till festlokalen. Sängarna kostar 250kr per natt och person, kontakta oss om du vill boka. De finns tillgängliga under fredag - söndag.
 </p><p>
 Vi kommer bo på .... och äta frukost där kl ... och då får ni gärna vara med. 
-
-
+</p><p>
+Hör gärna av er om ni har några andra funderingar! Vi ser fram emot att dela vår dag med er!
+</p><p>
+Kram Annika och Emil
         </p>
         </div>
     </div>  
@@ -60,5 +62,24 @@ Vi kommer bo på .... och äta frukost där kl ... och då får ni gärna vara m
 
     <a href="{% url 'shop' %}" class="btn btn-primary" role="button">Vår önskelista</a>
     </div>  
+
+    <div class="card mb-2 border-dark" style="width:35rem">
+        <div class="card-header text-white bg-dark py-2 px-3">Kontaktuppgifter</div>
+        <div class="card-body p-3">
+            <div class="row">
+
+              {% if user.is_authenticated %}
+              <div class="col-10">
+                  <p>Annika: annikajson@gmail.com 0737-265436 </p>
+                  <p>Emil: 518thornberg@gmail.com 0703-887637 </p>
+                  <p>Malin (Toastmaster): malinjojansson0623@gmail.com </p>
+              </div>
+              {% else %}
+    <a href="{% url 'login' %}" class="btn btn-outline-primary" role="button" >Logga in för att se våra kontaktuppgifter</a>
+
+  {% endif %}
+              </div>
+              </div>
+
 
 {% endblock %}

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item active">Välkommen till {{ wishlist.description }}</li>
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Till Startsidan</a></li> <li class="breadcrumb-item active"> {{ wishlist.description }}</li>
 {% endblock %}
 
 {% block content %}
@@ -37,7 +37,7 @@
               {%if not gift.bought %}
                 {%if gift.cost == 0%}
                 <div class="col-10 text-muted">
-                Klicka för att markera att du köper denhär presenten.
+                Klicka för att markera att du köper den här presenten.
                 </div>
                 {%else%}
               <div class="col-10 text-muted">

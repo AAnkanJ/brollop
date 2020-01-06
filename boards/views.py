@@ -85,6 +85,7 @@ def buy_gift(request, gift_pk):
             inp = form.save(commit=False)
             gift.costPayed += inp.costPayed
             gift.latestPayed = inp.costPayed
+            gift.numberBought += 1
             if gift.boughtBy_1 == '':
                 gift.boughtBy_1 = inp.boughtBy_1
             else:
@@ -101,9 +102,16 @@ def buy_gift(request, gift_pk):
                                 gift.boughtBy_4 = inp.boughtBy_1
                             else:
                                 gift.boughtBy_5 = inp.boughtBy_1
-            gift.costLeft = gift.cost - gift.costPayed
-            if gift.costLeft == 0:
-                gift.bought = True
+            # cases for gift that is bought thoroug website
+            if gift.cost > 0:
+                gift.costLeft = gift.cost - gift.costPayed
+                if gift.costLeft == 0:
+                    gift.bought = True   
+            # cases for registry, count down number and mark as bought
+            # if all wanted instanses are bougth
+            else:
+                if gift.numberBought >= gift.numberWanted:
+                    gift.bought = True
             gift.save()
             return redirect('thankyou', gift_pk = gift.pk)
     else:

@@ -22,7 +22,7 @@ class PostForm(forms.ModelForm):
 class BuyGiftForm(forms.ModelForm):
     boughtBy_1 = forms.CharField(
         widget=forms.Textarea(
-            attrs={'rows': 5, 'placeholder': 'Skriv gärna ett meddelande till brudparet'}
+            attrs={'rows': 5, 'placeholder': 'Skriv ditt namn och gärna ett meddelande till brudparet'}
         ),
         max_length=4000,
         help_text='The max length of the text is 4000.',

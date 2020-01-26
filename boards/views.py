@@ -74,6 +74,10 @@ def shop(request):
     wishlist = get_object_or_404(WishList, name='Bröllop', pk=1)
     return render(request, 'shop.html', {'wishlist': wishlist})
 
+def help(request):
+    return render(request, 'help.html', {})
+
+
 @login_required
 @user_passes_test(guest_check)
 def buy_gift(request, gift_pk):

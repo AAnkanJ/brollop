@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Till Startsidan</a></li>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10">
+          <p>Det viktigaste du kan göra är såklart att komma och dela vår dag med oss! </p> <p> Men om du är pysselsugen kommer här ytterligare tips på saker för att förgylla vår dag.</p> <p>Tänk på att det du bidrar med behöver kunna vara i Göteborg vid lunch dagen innan bröllopet. </p> 
+        </div>
+    </div>  
+</div>
+
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Saker att hjälpa till med</th>
+      </tr>
+    </thead>
+  </table>
+  <div class="row">
+  <div class ="col-md-3">
+    <div class="card mb-2 border-dark" style="width:17rem">
+        <div class="card-header text-white bg-dark py-2 px-3">Gör lådor</div>
+        <img class="card-img-top" src="{% static 'img/papercube.jpg' %}" alt="Card image cap">
+        <div class="card-body p-3">
+            <div class="row">
+              <div class="col-10">
+                  Vi kommer göra trädgårds-ljusslingor genom att sätta små papperslådor på vanliga slingor. Ta vanliga vita A4 papper och vik enligt instruktionen ovan så får du små lådor som vi kan använda. Vi blir glada för varenda en, och dessutom är de rätt kul att göra.
+                  <a href="/static/img/papercube.jpg" class="text-decoration-none" target="_blank" >Öppna instruktionen i helsida</a>  
+              </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <div class ="col-md-3">
+    <div class="card mb-2 border-dark" style="width:17rem">
+        <div class="card-header text-white bg-dark py-2 px-3">Ta med ljusslingor</div>
+        <img class="card-img-top" src="{% static 'img/ljusslinga.jpg' %}" alt="Card image cap">
+        <div class="card-body p-3">
+            <div class="row">
+              <div class="col-10">
+                  Packa inte ner dina trädgårdsljusslingor efter vintern utan låna ut dem till oss. Vi behöver vanliga slingor som på bilden. Namna dem gärna så de enkelt kommer tillbaka till er. Meddela oss gärna så vi vet hur många som är på ingång.
+              </div>
+        </div>
+    </div>
+  </div>
+  </div>
+
+  <div class ="col-md-3">
+    <div class="card mb-2 border-dark" style="width:17rem">
+        <div class="card-header text-white bg-dark py-2 px-3">Pynta mittgången</div>
+        <img class="card-img-top" src="{% static 'img/mittgång.jpg' %}" alt="Card image cap">
+        <div class="card-body p-3">
+            <div class="row">
+              <div class="col-10">
+                  Kyrksalen har ingen altargång så vi behöver använda kanterna på stolarna samt golvet för att skapa en känsla av mittgång. Du som är pyssel och pintrest sugen på detta projekt får gärna höra av dig.
+              </div>
+        </div>
+    </div>
+  </div>
+  </div>
+
+  </div>
+{% endblock %}

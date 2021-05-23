@@ -76,6 +76,10 @@ def shop(request):
 
 def help(request):
     return render(request, 'help.html', {})
+    
+def marta(request):
+    return render(request, 'marta.html', {})
+
 
 
 @login_required

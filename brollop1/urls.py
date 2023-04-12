@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^shop/$', views.shop, name='shop'),
+    url(r'^onskelista/$', views.onskelista, name='onskelista'),
     url(r'^other/$', views.help, name='help'),
     url(r'^reset/$',
         auth_views.PasswordResetView.as_view(
@@ -34,7 +35,9 @@ urlpatterns = [
     url(r'^settings/password/done/$', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'),
         name='password_change_done'),
     url(r'^shop/(?P<gift_pk>\d+)/buy/$', views.buy_gift, name='buy_gift'),
+    url(r'^onskelista/(?P<gift_pk>\d+)/buy/$', views.buy_gift_onskelista, name='buy_gift_onskelista'),
     url(r'^shop/(?P<gift_pk>\d+)/buy/thankyou/$', views.thankyou, name='thankyou'),
+    url(r'^onskelista/(?P<gift_pk>\d+)/buy/thankyou/$', views.thankyouOnskelista, name='thankyouOnskelista'),
     url(r'^boards/(?P<pk>\d+)/$', views.board_topics, name='board_topics'),
     url(r'^boards/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
     url(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.topic_posts, name='topic_posts'),

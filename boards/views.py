@@ -2,7 +2,7 @@ from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import NewTopicForm, PostForm, BuyGiftForm
+from .forms import NewTopicForm, PostForm, BuyGiftForm, BuyGiftFormOnskelista
 from .models import Board, Post, Topic, WishList, Gift
 from django.views.generic import UpdateView, ListView
 from django.utils import timezone
@@ -71,8 +71,12 @@ def topic_posts(request, pk, topic_pk):
     return render(request, 'topic_posts.html', {'topic': topic})
 
 def shop(request):
-    wishlist = get_object_or_404(WishList, name='Bröllop', pk=1)
+    wishlist = get_object_or_404(WishList, name='Bröllop')
     return render(request, 'shop.html', {'wishlist': wishlist})
+
+def onskelista(request):
+    wishlist = get_object_or_404(WishList, name='AlfredsLista')
+    return render(request, 'onskelista.html', {'wishlist': wishlist})
 
 def help(request):
     return render(request, 'help.html', {})
@@ -127,11 +131,65 @@ def buy_gift(request, gift_pk):
 
     return render(request, 'buy_gift.html', {'wishlist': wishlist, 'gift': gift, 'form': form})
 
+@login_required
+@user_passes_test(guest_check)
+def buy_gift_onskelista(request, gift_pk):
+    wishlist = get_object_or_404(WishList, name='AlfredsLista')
+    gift = get_object_or_404(Gift, wishList__name='AlfredsLista', pk=gift_pk)
+    if request.method == 'POST':
+        form = BuyGiftFormOnskelista(request.POST)
+        if form.is_valid():
+            inp = form.save(commit=False)
+            gift.costPayed += inp.costPayed
+            gift.latestPayed = inp.costPayed
+            gift.numberBought += 1
+            if gift.boughtBy_1 == '':
+                gift.boughtBy_1 = inp.boughtBy_1
+            else:
+                if gift.boughtBy_2 == '':
+                    gift.boughtBy_2 = inp.boughtBy_1
+                else:
+                    if gift.boughtBy_3 == '':
+                        gift.boughtBy_3 = inp.boughtBy_1
+                    else:
+                        if gift.boughtBy_4 == '':
+                            gift.boughtBy_4 = inp.boughtBy_1
+                        else:
+                            if gift.boughtBy_4 == '':
+                                gift.boughtBy_4 = inp.boughtBy_1
+                            else:
+                                gift.boughtBy_5 = inp.boughtBy_1
+            # cases for gift that is bought thoroug website
+            if gift.cost > 0:
+                gift.costLeft = gift.cost - gift.costPayed
+                if gift.costLeft == 0:
+                    gift.bought = True   
+            # cases for registry, count down number and mark as bought
+            # if all wanted instanses are bougth
+            else:
+                if gift.numberBought >= gift.numberWanted:
+                    gift.bought = True
+            gift.save()
+            return redirect('thankyouOnskelista', gift_pk = gift.pk)
+    else:
+        form = BuyGiftFormOnskelista()
+
+    return render(request, 'buy_gift_onskelista.html', {'wishlist': wishlist, 'gift': gift, 'form': form})
+
+
+
 def thankyou(request, gift_pk):
     wishlist = get_object_or_404(WishList, name='Bröllop', pk=1)
     gift = get_object_or_404(Gift, wishList__name='Bröllop', pk=gift_pk)
     
     return render(request, 'thankyou.html', {'wishlist': wishlist, 'gift': gift})
+
+def thankyouOnskelista(request, gift_pk):
+    wishlist = get_object_or_404(WishList, name='AlfredsLista')
+    gift = get_object_or_404(Gift, wishList__name='AlfredsLista', pk=gift_pk)
+    
+    return render(request, 'thankyou_onskelista.html', {'wishlist': wishlist, 'gift': gift})
+
 
 @login_required
 def reply_topic(request, pk, topic_pk):

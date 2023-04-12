@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Till Startsidan</a></li> <li class="breadcrumb-item active"> {{ wishlist.description }}</li>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10">
+          <p>Om du vill ge Alfred en present kan här se vad han önskar sig. </p><p> Du kan markera det du planerar att köpa så att andra ser att du har köpt dem (så att Alfred inte får dubletter). </p><p> Alfred blir givetvis glad över minnessaker från dopet eller andra speciella saker som inte finns på listan. </p><p> Text om swicha pengar till konto, välja fond Swedbank.</p> Om du har svårt att se varje ruta nedan i mobilen, testa i datorn istället. 
+        </div>
+    </div>  
+</div>
+
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Önskningar {{ wishlist.name }}</th>
+      </tr>
+    </thead>
+  </table>
+  <div class="row">
+  {% for gift in wishlist.gift.all %}
+  {% if gift.cost == 0 %}
+  <div class ="col-md-3">
+    <div class="card mb-2 border-dark" style="width:17rem">
+        <div class="card-header text-white bg-dark py-2 px-3">{{ gift.name }}</div>
+        <img class="card-img-top" src="{% static gift.picture %}" alt="Card image cap">
+        <div class="card-body p-3">
+            <div class="row">
+              <div class="col-10">
+                  {{ gift.message }}
+              </div>
+              {%if not gift.bought %}
+                {%if gift.cost == 0%}
+                <div class="col-10 text-muted">
+                Klicka för att markera att du köper den här presenten.
+                </div>
+                {%if gift.numberWanted > 1 %}
+                <div class="col-10 text-muted">
+                Vi önskar oss {{ gift.numberWanted }}. Hitills har {{ gift.numberBought }} gäster markerat den som köpt.
+                </div>
+                {%endif %}
+                {%else%}
+              <div class="col-10 text-muted">
+                  Beräknad kostnad för hela presenten är {{ gift.cost }}kr. Kostnad kvar att bidra med är {{ gift.costLeft }}kr
+              </div>
+              {%endif %}
+              {%endif %}
+              {%if gift.bought %}
+                {%if gift.cost == 0%}
+                 {%if gift.numberWanted > 1%}
+                  <div class="col-10 text-muted">
+                      Markerad som köpt av {{gift.numberWanted}} gäster, stort tack!
+                  </div>                
+                  {%else%}
+                  <div class="col-10 text-muted">
+                      Markerad som köpt, stort tack!
+                  </div>
+                  {%endif%}
+                  {%else%}  
+                  <div class="col-10 text-muted">
+                      Köpt för {{ gift.cost }}kr, stort tack!
+                  </div>
+                {%endif %}
+              {%endif %}
+            </div>
+            {%if not gift.bought %}
+              <a href="{% url 'buy_gift_onskelista' gift.pk %}" class="btn btn-primary">Köp</a>
+          {% endif %}
+        </div>
+    </div>
+  </div>
+  {% if forloop.counter|divisibleby:3 %}
+      </div><div class="row">
+    {% endif %}
+    {% endif %}
+  {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Startsida</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'onskelista' %}">Önskelista {{ wishlist.name }}</a></li>
+  <li class="breadcrumb-item active">Tack för {{ gift.name }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="col-10">
+      Stort tack för att du planerar att köpa eller redan köpt {{ gift.name }}!
+  </div>
+  <div class="col-10">
+      Om du skulle ångra dig kan du kontakta Annika så tar hon bort din markering.
+  </div>
+  <div class="col-10">
+      Vi ser fram emot att ses på dopet!
+  </div>
+  <div class="col-10">
+      Kram Alfred, Annika och Emil
+  </div>
+
+
+{% endblock %}

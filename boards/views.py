@@ -131,8 +131,6 @@ def buy_gift(request, gift_pk):
 
     return render(request, 'buy_gift.html', {'wishlist': wishlist, 'gift': gift, 'form': form})
 
-@login_required
-@user_passes_test(guest_check)
 def buy_gift_onskelista(request, gift_pk):
     wishlist = get_object_or_404(WishList, name='AlfredsLista')
     gift = get_object_or_404(Gift, wishList__name='AlfredsLista', pk=gift_pk)
